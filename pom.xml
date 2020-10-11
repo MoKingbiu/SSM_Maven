@@ -93,6 +93,13 @@
       <scope>provided</scope>
     </dependency>
 
+    <!--aop,切面和xml事务需要使用-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aspects</artifactId>
+      <version>5.2.8.RELEASE</version>
+    </dependency>
+
   </dependencies>
 
   <build>
@@ -125,12 +132,6 @@
           <source>13</source>
           <target>13</target>
         </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-archetype-plugin</artifactId>
-        <version>3.0.0</version>
       </plugin>
 
     </plugins>

@@ -2,8 +2,15 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/aop
+       https://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!--spring配置文件-->
     <context:property-placeholder location="classpath:conf/jdbc.properties"/>
@@ -26,9 +33,31 @@
         <property name="basePackage" value="com.moking.dao"/>
     </bean>
 
+    <!--事务配置，注解配置，aspectj配置-->
+
+    <!--事务管理器对象声明-->
+    <!--<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>-->
+
+    <!--注解式事务，中小型项目，建议使用运行时异常
+    <tx:annotation-driven transaction-manager="transactionManager"/>-->
+
+    <!--xml式事务，大型项目-->
+    <!--<tx:advice id="myadvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="纯方法名" isolation="" propagation="" rollback-for=""/>
+            <tx:method name="纯方法名" isolation="" propagation="" rollback-for=""/>
+        </tx:attributes>
+    </tx:advice>
+    <aop:config>
+        <aop:pointcut id="pointcut" expression="execution(参数)"/>
+        <aop:advisor advice-ref="myadvice" pointcut-ref="pointcut"/>
+    </aop:config>-->
+
     <context:component-scan base-package="com.moking.service"/>
     <context:component-scan base-package="com.moking.domain"/>
 
-    <!--事务配置，注解配置，aspectj配置-->
+
 
 </beans>
